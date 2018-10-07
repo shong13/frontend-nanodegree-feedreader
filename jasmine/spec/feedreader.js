@@ -44,7 +44,7 @@ $(function() {
          */
          it("have feed names", function() {
             for(let i = 0; i < allFeeds.length; i++){
-                expect(allFeeds[i].url).toBeDefined();
+                expect(allFeeds[i].name).toBeDefined();
                 expect(allFeeds[i].name).not.toBe("");
             }
          })
