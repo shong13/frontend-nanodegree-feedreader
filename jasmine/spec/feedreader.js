@@ -54,15 +54,20 @@ $(function() {
 
     /* TODO: Write a new test suite named "The menu" */
     describe("The menu", function() {
-
-    
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+
+        let body; //Since it's used in both tests, use the beforeEach() to simplify coding
+
+        beforeEach(function() {
+            body = document.querySelector("body");
+        });
+
         it("is hidden by default", function() {
-            
+            expect(body.classList.contains("menu-hidden")).toBe(true);//using the DOM to pick out a query, check to see if the toggleable class is hidden when the web loads
         });
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
@@ -70,7 +75,16 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
         it("changes visibility", function() {
+            const menuIcon = document.querySelector(".icon-list");//Need to check for clicks for toggle on/off
 
+            if(body.classList.contains("menu-hidden")===true){ //check to see if the body contains "menu-hidden" class
+                menuIcon.click(); //click to toggle 
+                expect(body.classList.contains("menu-hidden")).toBe(false); //when clicked, we expect the "menu-hidden" to disappear
+            }
+            if(body.classList.contains("menu-hidden")===false){ //check to see if the body contains "menu-hidden" class
+                menuIcon.click(); //click to toggle
+                expect(body.classList.contains("menu-hidden")).toBe(true); //when clicked, we expect the "menu-hidden" to appear
+            }
         });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
