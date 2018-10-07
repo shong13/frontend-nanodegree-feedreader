@@ -33,8 +33,9 @@ $(function() {
          */
         it("have URL", function() {
             for(let i = 0; i < allFeeds.length; i++){
-                expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url).not.toBe("");
+                expect(allFeeds[i].url).toBeDefined();//checks for url to be defined
+                expect(allFeeds[i].url.trim()).not.toBe("");//checks that url is not empty
+                                                            //used trim() just in case the url was a string filled with white spaces
             }
         });
 
@@ -44,10 +45,10 @@ $(function() {
          */
          it("have feed names", function() {
             for(let i = 0; i < allFeeds.length; i++){
-                expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name).not.toBe("");
-            }
-         })
+                expect(allFeeds[i].name).toBeDefined();//checks for name to be defined
+                expect(allFeeds[i].name.trim()).not.toBe("");//checks that name is not empty
+            }                                                // used trim() just in case the name was a string filled with white spaces
+         });
     });
 
 
