@@ -96,20 +96,83 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-        it("ensures entry is in container", function() {
+        // const feed = document.querySelector(".feed");
+        // const feedList = document.querySelector(".feed-list");
+        // const testArray = [];
 
+        beforeEach(function(done) {
+            // let numElem = feedList.childElementCount;
+            // for(let i = 0; i < numElem-1; i++){
+                
+            //     loadFeed(i, function() {
+            //         testArray.push(feed.children.length);
+            //     });
+            // }
+            // loadFeed(numElem-1, function() {
+            //     testArray.push(feed.children.length);
+            // });
+            
+            // done();
+            loadFeed(1, done);
         });
+
+        it("ensure at least 1 entry", function(done) {
+            // console.log(testArray);
+            // console.log(feed);
+            // expect(testArray.length).toBe(4);
+            const feed = document.querySelector(".feed");
+            expect(feed.children.length).toBeGreaterThan(0);
+            done();
+        });
+        /*Get a count of entries in the feed-list
+          then use loop to loadFeed all index
+          then while looping add number of child entries in a array
+          then use the numbers stored in array to make sure none are 0
+          expect the numbers not to be 0*/
+
     });
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe("New Feed Selection", function() {
-
-
+        //const feed = document.querySelector(".feed");
+        const firstFeed = [];
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-        it("loads new feed", function() {
+        beforeEach(function(done) {
+            // loadFeed(0);
+            // console.log(feed.children[0].innerText);
+            // Array.from(feed.children).forEach(function(element) {
+            //     firstFeed.push(element.innerText);
+            // });
+            // loadFeed(1, done);
+            
+            loadFeed(1, function() {
+                Array.from(document.querySelector(".feed").children).forEach(function(element) {
+                    firstFeed.push(element.innerText);
+                });
+            });
+            // loadFeed(1);
+            // Array.from(document.querySelector(".feed").children).forEach(function(element) {
+            //     firstFeed.push(element.innerText);
+            // });
+            loadFeed(3, done);
 
+        });
+        
+        it("loads new feed", function(done) {
+            // Array.from(feed.children).forEach(function(element, index) {
+            //     console.log(element.innerText, firstFeed[index], element.innerText === firstFeed[index]);
+            //     expect(element.innerText === firstFeed[index]).toBe(false);
+            // });
+
+            Array.from(document.querySelector(".feed").children).forEach(function(element, index) {
+                console.log(element.innerText, firstFeed[index], element.innerText === firstFeed[index]);
+                expect(element.innerText === firstFeed[index]).toBe(false);
+            });
+            done();
         });
     });
 }());
+
+//Make sure to test how "const feed = document.querySelector(".feed")" from the beginning affect the entire code.
